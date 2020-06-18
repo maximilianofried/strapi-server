@@ -1,0 +1,15 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "mongoose",
+      "settings": {
+        "client": "mongo",
+        "uri": "mongodb://gt-username:Gesundheitsticket@gtcluster-shard-00-00-lxgn0.mongodb.net:27017,gtcluster-shard-00-01-lxgn0.mongodb.net:27017,gtcluster-shard-00-02-lxgn0.mongodb.net:27017/GT-DB?ssl=true&replicaSet=GTCluster-shard-0&authSource=admin&retryWrites=true&w=majority"
+      },
+      "options": {
+        "ssl": true
+      }
+    }
+  }
+}

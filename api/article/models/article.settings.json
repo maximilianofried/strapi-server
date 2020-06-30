@@ -38,13 +38,16 @@
     "slug": {
       "type": "string"
     },
-    "owner": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "articles"
-    },
     "author": {
       "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "draft",
+        "published",
+        "archive"
+      ]
     }
   }
 }

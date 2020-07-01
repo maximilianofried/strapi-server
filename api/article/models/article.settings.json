@@ -48,6 +48,10 @@
         "published",
         "archive"
       ]
+    },
+    "comments": {
+      "via": "article",
+      "collection": "comment"
     }
   }
 }

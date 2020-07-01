@@ -1,23 +1,19 @@
-const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
+const { sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
-  /**
-   * Create a record.
-   *
-   * @return {Object}
-   */
+  async find(ctx) {
+    let entities;
 
-  async create(ctx) {
-    let entity;
-    if (ctx.is('multipart')) {
-        const { data, files } = parseMultipartData(ctx);
-        data.author = ctx.state.user.username;
-        entity = await strapi.services.article.create(data, { files });
-    } else {
-        ctx.request.body.owner = ctx.state.user;
-        ctx.request.body.author = ctx.state.user.username;
-        entity = await strapi.services.article.create(ctx.request.body);
+    ctx.query = {
+      ...ctx.query,
+      status: 'published'
     }
-        return sanitizeEntity(entity, { model: strapi.models.article });
-  },
+    if(ctx.query._q) {
+      entities = await strapi.services.article.search(ctx.query);
+    } else {
+      entities = await strapi.services.article.find(ctx.query);
+    }
+
+    return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.article }));
+  }
 };
